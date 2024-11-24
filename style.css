@@ -35,6 +35,17 @@ body {
     color: white;
 }
 
+.clear {
+    background-color: #ff8b8b;
+    color: #222;
+    transition: 0.1s;
+}
+
+.clear:hover{
+    background-color: #ffaaaa;
+    color: #222;
+}
+
 .zero {
     width: 106px;
 }
