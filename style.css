@@ -35,17 +35,39 @@ body {
     color: white;
 }
 
-.clear {
+#clear {
     background-color: #ff8b8b;
     color: #222;
     transition: 0.1s;
 }
 
-.clear:hover{
+#clear:hover{
     background-color: #ffaaaa;
     color: #222;
 }
 
-.zero {
+#zero {
     width: 106px;
+}
+
+.operations {
+    background-color: #ccc;
+    color: #222;
+    transition: 0.2s;
+}
+
+.operations:hover {
+    background-color: white;
+    color: #000;
+}
+
+.operations.selected {
+    background-color: rgb(139, 227, 139);
+    color: #000;
+    cursor: default;
+}
+
+.operations.selected:hover {
+    background-color: rgb(139, 227, 139);
+    color: #000;
 }

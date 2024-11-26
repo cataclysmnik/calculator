@@ -9,36 +9,36 @@
 </head>
 <body>
     <div class="container">
-        <div class="display">0</div>
+        <div class="display" id="display">0</div>
         <div class="buttons">
             <div class="firstRow">
-                <button class="btn clear">AC</button>
-                <button class="btn negative">+/-</button>
-                <button class="btn percent">%</button>
-                <button class="btn divide">/</button>
+                <button class="btn" id="clear" onclick="clearAll()">AC</button>
+                <button class="btn" id="negative" onclick="toggleSign()">+/-</button>
+                <button class="btn" id="percent" onclick="applyPercent()">%</button>
+                <button class="btn operations" id="divide" onclick="operationBtn('divide')">/</button>
             </div>
             <div class="secondRow">
-                <button class="btn seven">7</button>
-                <button class="btn eight">8</button>
-                <button class="btn nine">9</button>
-                <button class="btn multiply">x</button>
+                <button class="btn" id="seven" onclick="inputNum('7')">7</button>
+                <button class="btn" id="eight" onclick="inputNum('8')">8</button>
+                <button class="btn" id="nine" onclick="inputNum('9')">9</button>
+                <button class="btn operations" id="multiply" onclick="operationBtn('multiply')">x</button>
             </div>
             <div class="thirdRow">
-                <button class="btn four">4</button>
-                <button class="btn five">5</button>
-                <button class="btn six">6</button>
-                <button class="btn subtract">-</button>
+                <button class="btn" id="four" onclick="inputNum('4')">4</button>
+                <button class="btn" id="five" onclick="inputNum('5')">5</button>
+                <button class="btn" id="six" onclick="inputNum('6')">6</button>
+                <button class="btn operations" id="subtract" onclick="operationBtn('subtract')">-</button>
             </div>
             <div class="fourthRow">
-                <button class="btn one">1</button>
-                <button class="btn two">2</button>
-                <button class="btn three">3</button>
-                <button class="btn add">+</button>
+                <button class="btn" id="one" onclick="inputNum('1')">1</button>
+                <button class="btn" id="two" onclick="inputNum('2')">2</button>
+                <button class="btn" id="three" onclick="inputNum('3')">3</button>
+                <button class="btn operations" id="add" onclick="operationBtn('add')">+</button>
             </div>
             <div class="fifthRow">
-                <button class="btn zero">0</button>
-                <button class="btn decimal">.</button>
-                <button class="btn evaluate">=</button>
+                <button class="btn" id="zero" onclick="inputNum('0')">0</button>
+                <button class="btn" id="decimal" onclick="inputNum('.')">.</button>
+                <button class="btn" id="evaluate" onclick="calculate()">=</button>
             </div>
         </div>
     </div>
