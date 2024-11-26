@@ -4,22 +4,27 @@ let operation = "";
 let resetDisplay = false;
 
 function add(x, y) {
-    return x + y;
+    return roundToFiveDecimalPlaces(x + y);
 }
 
 function subtract(x, y) {
-    return x - y;
+    return roundToFiveDecimalPlaces(x - y);
 }
 
 function multiply(x, y) {
-    return x * y;
+    return roundToFiveDecimalPlaces(x * y);
 }
 
 function divide(x, y) {
     if (y === 0) {
         return "Error";
     }
-    return x / y;
+    return roundToFiveDecimalPlaces(x / y);
+}
+
+// Helper function to round a number to 5 decimal places
+function roundToFiveDecimalPlaces(num) {
+    return Math.round(num * 100000) / 100000;
 }
 
 function operate(firstNum, secondNum, operation) {
@@ -59,10 +64,15 @@ function clearDisplay() {
 
 function populateDisplay(btn) {
     const display = document.getElementById("display");
+
     if (resetDisplay) {
-        display.innerText = btn;
+        display.innerText = btn === "." ? "0." : btn;
         resetDisplay = false;
     } else {
+        if (btn === "." && display.innerText.includes(".")) {
+            return;
+        }
+
         if (display.innerText === "0" && btn !== ".") {
             display.innerText = btn;
         } else {
