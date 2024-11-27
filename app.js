@@ -17,7 +17,7 @@ function multiply(x, y) {
 
 function divide(x, y) {
     if (y === 0) {
-        return "Error";
+        return "No. Don't.";
     }
     return roundToFiveDecimalPlaces(x / y);
 }
@@ -46,10 +46,12 @@ function clearAll() {
     operation = "";
     resetDisplay = false;
     document.getElementById("display").innerText = "0";
+    document.getElementById("display2").innerText = "⠀";
     document.querySelectorAll(".operations").forEach((btn) =>
         btn.classList.remove("selected")
     );
 }
+
 
 function clearOne() {
     const display = document.getElementById("display");
@@ -116,7 +118,12 @@ function operationBtn(opBtn) {
 
     operation = opBtn;
     resetDisplay = true;
+    updateSecondaryDisplay();
+
+    clearDisplay();
 }
+
+
 
 function toggleSign() {
     const display = document.getElementById("display");
@@ -128,6 +135,21 @@ function toggleSign() {
     }
 }
 
+function updateSecondaryDisplay() {
+    const secondaryDisplay = document.getElementById("display2");
+    const operationSymbols = {
+        add: "+",
+        subtract: "-",
+        multiply: "x",
+        divide: "/",
+    };
+
+    if (operation && firstNum !== null) {
+        secondaryDisplay.innerText = `${firstNum} ${operationSymbols[operation] || ""}`;
+    } else {
+        secondaryDisplay.innerText = "";
+    }
+}
 
 function calculate() {
     const value = document.getElementById("display").innerText;
@@ -137,7 +159,18 @@ function calculate() {
         const result = operate(firstNum, secondNum, operation);
 
         if (result !== null) {
+            const operationSymbols = {
+                add: "+",
+                subtract: "-",
+                multiply: "x",
+                divide: "/",
+            };
+
+            document.getElementById("display2").innerText = 
+                `${firstNum} ${operationSymbols[operation]} ${secondNum} =`;
+
             document.getElementById("display").innerText = result;
+
             firstNum = result;
             secondNum = null;
             operation = "";
@@ -162,7 +195,7 @@ document.addEventListener("keydown", (event) => {
 
     if (!isNaN(key)) {
         inputNum(key);
-        highlightButton(key);
+        highlightButton(getButtonId(key));
     } else if (key === ".") {
         inputNum(".");
         highlightButton("decimal");
@@ -195,6 +228,22 @@ document.addEventListener("keydown", (event) => {
         highlightButton("negative");
     }
 });
+
+function getButtonId(key) {
+    const keyMap = {
+        "0": "zero",
+        "1": "one",
+        "2": "two",
+        "3": "three",
+        "4": "four",
+        "5": "five",
+        "6": "six",
+        "7": "seven",
+        "8": "eight",
+        "9": "nine",
+    };
+    return keyMap[key];
+}
 
 function highlightButton(keyId) {
     const button = document.getElementById(keyId);
