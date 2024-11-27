@@ -71,3 +71,7 @@ body {
     background-color: rgb(139, 227, 139);
     color: #000;
 }
+
+.btnClick {
+    opacity: 80%;
+}

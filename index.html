@@ -13,8 +13,8 @@
         <div class="buttons">
             <div class="firstRow">
                 <button class="btn" id="clear" onclick="clearAll()">AC</button>
+                <button class="btn" id="clearone" onclick="clearOne()">C</button>
                 <button class="btn" id="negative" onclick="toggleSign()">+/-</button>
-                <button class="btn" id="percent" onclick="applyPercent()">%</button>
                 <button class="btn operations" id="divide" onclick="operationBtn('divide')">/</button>
             </div>
             <div class="secondRow">
@@ -38,7 +38,7 @@
             <div class="fifthRow">
                 <button class="btn" id="zero" onclick="inputNum('0')">0</button>
                 <button class="btn" id="decimal" onclick="inputNum('.')">.</button>
-                <button class="btn" id="evaluate" onclick="calculate()">=</button>
+                <button class="btn operations" id="evaluate" onclick="calculate()">=</button>
             </div>
         </div>
     </div>

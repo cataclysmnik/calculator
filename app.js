@@ -22,7 +22,6 @@ function divide(x, y) {
     return roundToFiveDecimalPlaces(x / y);
 }
 
-// Helper function to round a number to 5 decimal places
 function roundToFiveDecimalPlaces(num) {
     return Math.round(num * 100000) / 100000;
 }
@@ -50,6 +49,17 @@ function clearAll() {
     document.querySelectorAll(".operations").forEach((btn) =>
         btn.classList.remove("selected")
     );
+}
+
+function clearOne() {
+    const display = document.getElementById("display");
+    let currentValue = display.innerText;
+
+    if (currentValue.length > 1) {
+        display.innerText = currentValue.slice(0, -1);
+    } else {
+        display.innerText = "0";
+    }
 }
 
 function clearSelection() {
@@ -108,6 +118,17 @@ function operationBtn(opBtn) {
     resetDisplay = true;
 }
 
+function toggleSign() {
+    const display = document.getElementById("display");
+    let currentValue = parseFloat(display.innerText);
+
+    if (!isNaN(currentValue)) {
+        currentValue = -currentValue;
+        display.innerText = currentValue;
+    }
+}
+
+
 function calculate() {
     const value = document.getElementById("display").innerText;
 
@@ -123,5 +144,65 @@ function calculate() {
             resetDisplay = true;
             clearSelection();
         }
+    }
+}
+
+document.querySelectorAll(".btn").forEach((button) => {
+    button.addEventListener("click", () => {
+        button.classList.add("btnClick");
+        
+        setTimeout(() => {
+            button.classList.remove("btnClick");
+        }, 100);
+    });
+});
+
+document.addEventListener("keydown", (event) => {
+    const key = event.key;
+
+    if (!isNaN(key)) {
+        inputNum(key);
+        highlightButton(key);
+    } else if (key === ".") {
+        inputNum(".");
+        highlightButton("decimal");
+    } else if (key === "+") {
+        operationBtn("add");
+        highlightButton("add");
+    } else if (key === "-") {
+        operationBtn("subtract");
+        highlightButton("subtract");
+    } else if (key === "*") {
+        operationBtn("multiply");
+        highlightButton("multiply");
+    } else if (key === "/") {
+        operationBtn("divide");
+        highlightButton("divide");
+    } else if (key === "Enter" || key === "=") {
+        calculate();
+        highlightButton("evaluate");
+    } else if (key === "Backspace") {
+        clearOne();
+        highlightButton("clearone");
+    } else if (key === "Escape") {
+        clearAll();
+        highlightButton("clear");
+    } else if (key === "Delete") {
+        clearAll();
+        highlightButton("clear");
+    } else if (key === "n") {
+        toggleSign();
+        highlightButton("negative");
+    }
+});
+
+function highlightButton(keyId) {
+    const button = document.getElementById(keyId);
+
+    if (button) {
+        button.classList.add("btnClick");
+        setTimeout(() => {
+            button.classList.remove("btnClick");
+        }, 100);
     }
 }
